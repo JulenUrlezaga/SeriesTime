@@ -17,8 +17,15 @@ const minutos = document.getElementById('minutos');
 
 calcminutos.forEach(element => {
     element.addEventListener('change', () => {
-    var mins = parseInt(document.getElementById('minuto').value);
-    var hors = parseInt(document.getElementById('hora').value);
+    /*var mins = parseInt(document.getElementById('minuto').value);
+    var hors = parseInt(document.getElementById('hora').value);*/
+
+    var minhours = document.getElementById('horaminutosaldia').value;
+    
+    const partes = minhours.split(':');
+    const horas1 = parseInt(partes[0], 10); 
+    const minutos1 = parseInt(partes[1], 10);
+
     const check = document.getElementById('flexSwitchCheckChecked');
     
 
@@ -34,7 +41,7 @@ calcminutos.forEach(element => {
                     timeTotal = elemento[4]
                 }
 
-                if (mins > 59 || hors > 23 || mins < 0 || hors < 0) {
+                /*if (mins > 59 || hors > 23 || mins < 0 || hors < 0) {
                     if (mins > 59) { mins = 59; document.getElementById('minuto').value = mins;}
             
                     if (hors > 23) { hors = 23;  document.getElementById('hora').value = hors;}
@@ -43,8 +50,8 @@ calcminutos.forEach(element => {
 
                     if (hors < 0) { hors = 0;  document.getElementById('hora').value = hors;}
                 
-                }
-                var minhors = mins + (hors * 60);
+                }*/
+                var minhors = minutos1 + (horas1 * 60);
 
                 tiempo = calcuhoras(timeTotal, minhors);
 
@@ -138,25 +145,66 @@ anoFinalizadoInput.addEventListener('change' ,function(){
     const urlObj = new URL(url);
     const params = new URLSearchParams(urlObj.search);
 
-    var nombre = params.get('nombre').toUpperCase();
+    var nombre = params.get('nombre');
     var episodiosserie = params.get('episodiosserie');
-    var horaserie = params.get('horaserie');
-    var minutoserie = params.get('minutoserie');
+    /*var horaserie = params.get('horaserie');
+    var minutoserie = params.get('minutoserie');*/
+
+    var tiempoxepisodio = params.get('tiempoxepisodio');
+        let horasepisodio = 0;
+        let minutosepisodio = 0;
+
+        if (tiempoxepisodio) {
+            const partes = tiempoxepisodio.split(':');
+            horasepisodio = parseInt(partes[0], 10); 
+            minutosepisodio = parseInt(partes[1], 10); 
+        }
+    
     var anoserie = params.get('anoserie');
     var anofinalizado = params.get('anofinalizado');
     var flexRadioDefault = params.get('flexRadioDefault');
-    var minutoserieopening = params.get('minutoserieopening');
-    var minutoserieending = params.get('minutoserieending');
+    var minutossegundoserieopening = params.get('minutoserieopening');
+        let minutosopening = 0;
+        let segundosopening = 0;
+
+        if (minutossegundoserieopening) {
+            const partes = minutossegundoserieopening.split(':');
+            minutosopening = parseInt(partes[0], 10); 
+            segundosopening= parseInt(partes[1], 10);
+            console.log(minutosopening);
+            console.log(segundosopening);
+        }
+
+    var minutossegundosserieending = params.get('minutoserieending');
+
+        let minutosending = 0;
+        let segundosending = 0;
+
+        if (minutossegundosserieending) {
+            const partes = minutossegundosserieending.split(':');
+            minutosending = parseInt(partes[0], 10); 
+            segundosending= parseInt(partes[1], 10); 
+            console.log(minutosending);
+            console.log(segundosending);
+        }
+
     var rutaserie = params.get('rutaserie');
 
-    const botonaplicar =document.getElementById("btnAplicar");
-
-    var anoemision = 0;
-
+    
     var ano = new Date().getFullYear();
     console.log(ano);
-    document.getElementById('anofinalizado').setAttribute('max', ano);
     
+    /*No funciona de momento el minimo de anofinalizado y ns el porque*/ 
+    document.getElementById('anoserie').setAttribute('max', ano);
+    document.getElementById('anoserie').setAttribute('min', 1800);
+
+    minimoano = document.getElementById('anoserie').getAttribute('min');
+
+    document.getElementById('anofinalizado').setAttribute('max', ano);
+    document.getElementById('anofinalizado').setAttribute('min', minimoano);
+
+
+    var anoemision = 0;
 
     if (flexRadioDefault == "Finalizado" ){
         anoemision = anofinalizado - anoserie ;
@@ -164,12 +212,20 @@ anoFinalizadoInput.addEventListener('change' ,function(){
         anoemision = ano - anoserie;
     }
 
-    tiempocap = (horaserie*60)+parseInt(minutoserie);
+    tiempocap = (horasepisodio*60)+minutosepisodio;
 
     tiemposerie = tiempocap * episodiosserie;
 
-    inoutrominutos = parseInt(minutoserieopening + minutoserieending);
+    // Redondear segundos a minutos
+    inoutrominutos = minutosopening + Math.floor(segundosopening / 60); 
+    inoutrominutos += minutosending + Math.floor(segundosending / 60);  
 
+    inoutrominutos += (segundosopening % 60 > 0) ? 1 : 0; 
+    inoutrominutos += (segundosending % 60 > 0) ? 1 : 0; 
+
+
+
+    const botonaplicar =document.getElementById("btnAplicar");
 
     if (botonaplicar) {
        series.push([(series.length)+1, nombre, episodiosserie, tiempocap,tiemposerie,anoemision, flexRadioDefault, inoutrominutos, rutaserie]) 

@@ -15,10 +15,12 @@
             <h1>¿Cuánto tiempo tienes al día?</h1>
             
                 <div class="form-group formutiempo">
-                    <label for="hora">Horas:</label>
-                    <input type="number" id="hora" name="hora" class="calculominutos" maxlength="2" oninput="this.value = this.value.slice(0, 2);" min="0" max="23" value="0">
+                    <!-- <label for="hora">Horas:</label>
+                    <input type="number" id="hora" name="hora" class="calculominutos"  min="0" max="23" value="0">
                     <label for="minuto">Minutos:</label>
-                    <input type="number" id="minuto" name="minuto" class="calculominutos" maxlength="2" oninput="this.value = this.value.slice(0, 2);" min="0" max="59" value="0">
+                    <input type="number" id="minuto" name="minuto" class="calculominutos" min="0" max="59" value="0"> -->
+
+                    <input type="time" id="horaminutosaldia" class="calculominutos" min="00:00" max="23:59" value="00:00">
                 </div>
            
                 <hr>
@@ -31,13 +33,15 @@
                 <div class="formutiempo">
                     <label for="episodiosserie">EPISODIOS:</label>
                     <input type="number" id="episodiosserie" name="episodiosserie" class="" oninput="this.value = this.value.slice(0, 2);" min="0" required>
-                    <label for="horaserie">HORAS:</label>
+                    <!-- <label for="horaserie">HORAS:</label>
                     <input type="number" id="horaserie" name="horaserie" class="calculominutos" maxlength="2" oninput="this.value = this.value.slice(0, 2);" min="0" max="23" value="0">
                     <label for="minutoserie">MINUTOS:</label>
-                    <input type="number" id="minutoserie" name="minutoserie" class="calculominutos" maxlength="2" oninput="this.value = this.value.slice(0, 2);" min="0" max="59" value="0" required>
+                    <input type="number" id="minutoserie" name="minutoserie" class="calculominutos" maxlength="2" oninput="this.value = this.value.slice(0, 2);" min="0" max="59" value="0" required> -->
+
+                    <input type="time" id="tiempoxepisodio" name="tiempoxepisodio" class="calculominutos" min="00:01" max="03:00" value="00:01">
                 </div>
-                <label for="anosserie">AÑO Comienzo:</label>
-                <input type="text" id="anoserie" name="anoserie" class=""><br><br>
+                <label for="anoserie">AÑO Comienzo:</label>
+                <input type="number" id="anoserie" name="anoserie" class="" maxlength="4" oninput="this.value = this.value.slice(0, 4);"><br><br>
                 <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="En Emisión" checked>
                 <label class="form-check-label" for="flexRadioDefault2">
                     En Emisión
@@ -47,13 +51,13 @@
                     Finalizado
                 </label><br>
                 <label for="anofinalizado">AÑO Finalizado:</label>
-                <input type="number" id="anofinalizado" name="anofinalizado" class="" maxlength="4" oninput="this.value = this.value.slice(0, 4);" min=0 max=""><br>
+                <input type="number" id="anofinalizado" name="anofinalizado" class="" maxlength="4" oninput="this.value = this.value.slice(0, 4);"><br>
 
                 <div class="formutiempo">
                     <label for="minutoserieopening">INTRO:</label>
-                    <input type="number" id="minutoserieopening" name="minutoserieopening" class="calculominutos" maxlength="3" oninput="this.value = this.value.slice(0, 3);" min="0" max="59" value="0" required>
+                    <input type="time" id="minutoserieopening" name="minutoserieopening" class="calculominutos" min="00:01" max="03:00" value="00:00" required>
                     <label for="minutoserieending">OUTRO:</label>
-                    <input type="number" id="minutoserieending" name="minutoserieending" class="calculominutos" maxlength="3" oninput="this.value = this.value.slice(0, 3);" min="0" max="59" value="0" required>
+                    <input type="time" id="minutoserieending" name="minutoserieending" class="calculominutos" min="00:01" max="03:00" value="00:00" required>
                 </div>
                 <label for="rutaserie">RUTA (Direccion de imagen):</label>
                 <input type="text" id="rutaserie" name="rutaserie" class="">

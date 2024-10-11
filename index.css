@@ -94,3 +94,14 @@ input, select {
 input[disabled] {
     background-color: #e9ecef;
 }
+
+input:invalid + span::after {
+    position: absolute;
+    content: "✖";
+    font-size: 10px;
+  }
+  
+  input:valid + span::after {
+    position: absolute;
+    content: "✓";
+  }
