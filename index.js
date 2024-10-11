@@ -7,7 +7,7 @@ let series = [
 const calcminutos = document.querySelectorAll('.calculominutos');
 const selectSerie = document.querySelector('#serie');
 const caps = document.getElementById('caps');
-
+const ano = new Date().getFullYear();
 const anos = document.getElementById('anos');
 const meses = document.getElementById('meses');
 const dias = document.getElementById('dias');
@@ -28,6 +28,13 @@ calcminutos.forEach(element => {
 
     const check = document.getElementById('flexSwitchCheckChecked');
     
+    document.getElementById('anoserie').setAttribute('max', ano);
+    document.getElementById('anoserie').setAttribute('min', 1800);
+
+    minimoano = document.getElementById('anoserie').value;
+
+    document.getElementById('anofinalizado').setAttribute('max', ano);
+    document.getElementById('anofinalizado').setAttribute('min', minimoano);
 
         series.forEach(elemento => {
             if (elemento[0] == selectSerie.value) {
@@ -191,17 +198,11 @@ anoFinalizadoInput.addEventListener('change' ,function(){
     var rutaserie = params.get('rutaserie');
 
     
-    var ano = new Date().getFullYear();
+    
     console.log(ano);
     
     /*No funciona de momento el minimo de anofinalizado y ns el porque*/ 
-    document.getElementById('anoserie').setAttribute('max', ano);
-    document.getElementById('anoserie').setAttribute('min', 1800);
-
-    minimoano = document.getElementById('anoserie').getAttribute('min');
-
-    document.getElementById('anofinalizado').setAttribute('max', ano);
-    document.getElementById('anofinalizado').setAttribute('min', minimoano);
+    
 
 
     var anoemision = 0;
