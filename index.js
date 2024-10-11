@@ -71,7 +71,7 @@ calcminutos.forEach(element => {
                 <h2><b>Capítulos: </b>` + elemento[2] + `</h2>
                 <h2><b>Duración por capítulo:</b> ` + elemento[3] + ` min</h2>
                 <h2><b>Años en emisión: </b>` + elemento[5] + `</h2>
-                <h2 ><b>Estado:</b> ` + elemento[6] + `</h2>
+                <h2 ><b>Estado:</b> ` + elemento[6] + ` (`+anoserie+`-`+anofinalizado+`)</h2>
                 `;
 
                 anos.value = tiempo[0];
