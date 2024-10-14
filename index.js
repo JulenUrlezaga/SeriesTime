@@ -235,13 +235,12 @@ anoFinalizadoInput.addEventListener('change' ,function(){
     const botonaplicar =document.getElementById("btnAplicar");
 
     if (botonaplicar) {
-       series.push([(series.length)+1, nombre, episodiosserie, tiempocap,tiemposerie,anoemision, flexRadioDefault, inoutrominutos, rutaserie,anoemision,anofinalizado]) 
+       series.push([(series.length)+1, nombre, episodiosserie, tiempocap,tiemposerie,anoemision, flexRadioDefault, inoutrominutos, rutaserie,anoserie,anofinalizado]);
+        
     }
-
-    const selectElement = document.getElementById('serie');
-
-    const newOption = document.createElement('option');
-    newOption.value = series.length; 
-    newOption.textContent = nombre; 
-
-    selectElement.appendChild(newOption);
+const selectElement = document.getElementById('serie');
+    
+const newOption = document.createElement('option');
+newOption.value = series.length; 
+newOption.textContent = nombre; 
+selectElement.appendChild(newOption);
