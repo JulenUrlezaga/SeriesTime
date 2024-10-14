@@ -1,18 +1,24 @@
+const ano = new Date().getFullYear();
+
 let series = [
-    [1, 'ONE PIECE', 1121, 23, 26928, 25, 'En emisión',3,'https://sm.ign.com/t/ign_br/tv/o/one-piece-/one-piece-2_1xby.1200.jpg'],
-    [2, 'BREAKING BAD', 62, 47, 3100, 6, "Finalizado",2.5,'https://img.goodfon.com/wallpaper/big/e/cf/breaking-bad-aaron-paul-bryan.webp'],
-    [3, 'LOS SIMPSONS', 770, 25, 17050, 37, 'En emisión',2,'https://wallpapers.com/images/hd/all-the-simpsons-characters-56qx061k73t2a1xo.jpg']
+    [1, 'ONE PIECE', 1121, 23, 26928, 25, 'En emisión',3,'https://sm.ign.com/t/ign_br/tv/o/one-piece-/one-piece-2_1xby.1200.jpg',1997,ano+'...'],
+    [2, 'BREAKING BAD', 62, 47, 3100, 6, "Finalizado",2.5,'https://img.goodfon.com/wallpaper/big/e/cf/breaking-bad-aaron-paul-bryan.webp',2008,2011],
+    [3, 'LOS SIMPSONS', 770, 25, 17050, 37, 'En emisión',2,'https://wallpapers.com/images/hd/all-the-simpsons-characters-56qx061k73t2a1xo.jpg',1993,ano+'...']
 ];
 
 const calcminutos = document.querySelectorAll('.calculominutos');
 const selectSerie = document.querySelector('#serie');
 const caps = document.getElementById('caps');
-const ano = new Date().getFullYear();
+
 const anos = document.getElementById('anos');
 const meses = document.getElementById('meses');
 const dias = document.getElementById('dias');
 const horas = document.getElementById('horas');
 const minutos = document.getElementById('minutos');
+
+    var anoserie = 0;
+    var anofinalizado = 0;
+
 
 
 calcminutos.forEach(element => {
@@ -71,7 +77,7 @@ calcminutos.forEach(element => {
                 <h2><b>Capítulos: </b>` + elemento[2] + `</h2>
                 <h2><b>Duración por capítulo:</b> ` + elemento[3] + ` min</h2>
                 <h2><b>Años en emisión: </b>` + elemento[5] + `</h2>
-                <h2 ><b>Estado:</b> ` + elemento[6] + ` (`+anoserie+`-`+anofinalizado+`)</h2>
+                <h2 ><b>Estado:</b> ` + elemento[6] + ` (`+elemento[9]+`-`+elemento[10]+`)</h2>
                 `;
 
                 anos.value = tiempo[0];
@@ -167,8 +173,8 @@ anoFinalizadoInput.addEventListener('change' ,function(){
             minutosepisodio = parseInt(partes[1], 10); 
         }
     
-    var anoserie = params.get('anoserie');
-    var anofinalizado = params.get('anofinalizado');
+    anoserie = params.get('anoserie');
+    anofinalizado = params.get('anofinalizado');
     var flexRadioDefault = params.get('flexRadioDefault');
     var minutossegundoserieopening = params.get('minutoserieopening');
         let minutosopening = 0;
@@ -229,7 +235,7 @@ anoFinalizadoInput.addEventListener('change' ,function(){
     const botonaplicar =document.getElementById("btnAplicar");
 
     if (botonaplicar) {
-       series.push([(series.length)+1, nombre, episodiosserie, tiempocap,tiemposerie,anoemision, flexRadioDefault, inoutrominutos, rutaserie]) 
+       series.push([(series.length)+1, nombre, episodiosserie, tiempocap,tiemposerie,anoemision, flexRadioDefault, inoutrominutos, rutaserie,anoemision,anofinalizado]) 
     }
 
     const selectElement = document.getElementById('serie');
