@@ -13,16 +13,13 @@
     <div class="formularios">
         <div class="form-container">
             <h1>¿Cuánto tiempo tienes al día?</h1>
-            
                 <div class="form-group formutiempo">
-                    <!-- <label for="hora">Horas:</label>
-                    <input type="number" id="hora" name="hora" class="calculominutos"  min="0" max="23" value="0">
-                    <label for="minuto">Minutos:</label>
-                    <input type="number" id="minuto" name="minuto" class="calculominutos" min="0" max="59" value="0"> -->
-
                     <input type="time" id="horaminutosaldia" class="calculominutos" min="00:00" max="23:59" value="00:00">
                 </div>
-           
+            <h1>¿Desde que episodio?</h1>
+            <div class="formutiempo">
+                <input type="number" id="episodioempezar" class="calculominutos" maxlength="4" oninput="this.value = this.value.slice(0, 4)">
+            </div>
                 <hr>
             <h1>Añade una serie</h1>
         <form >

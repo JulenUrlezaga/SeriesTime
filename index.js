@@ -26,6 +26,7 @@ calcminutos.forEach(element => {
     /*var mins = parseInt(document.getElementById('minuto').value);
     var hors = parseInt(document.getElementById('hora').value);*/
 
+    var mincaps = document.getElementById('episodioempezar').value;
     var minhours = document.getElementById('horaminutosaldia').value;
     
     const partes = minhours.split(':');
@@ -49,7 +50,7 @@ calcminutos.forEach(element => {
 
                 let timeTotal = elemento[4]
                 if (!check.checked) {
-                    timeTotal = elemento[4] - (elemento[2] * elemento[7])
+                    timeTotal = elemento[4] - ((elemento[2] - mincaps)* elemento[7])
                 }else{
                     timeTotal = elemento[4]
                 }
@@ -203,13 +204,8 @@ anoFinalizadoInput.addEventListener('change' ,function(){
 
     var rutaserie = params.get('rutaserie');
 
-    
-    
     console.log(ano);
     
-    /*No funciona de momento el minimo de anofinalizado y ns el porque*/ 
-    
-
 
     var anoemision = 0;
 
