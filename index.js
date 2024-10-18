@@ -19,15 +19,14 @@ const minutos = document.getElementById('minutos');
     var anoserie = 0;
     var anofinalizado = 0;
 
-
-
 calcminutos.forEach(element => {
     element.addEventListener('change', () => {
     /*var mins = parseInt(document.getElementById('minuto').value);
     var hors = parseInt(document.getElementById('hora').value);*/
 
-    var mincaps = document.getElementById('episodioempezar').value;
+    var mincaps = document.getElementById('episodioempezar');
     var minhours = document.getElementById('horaminutosaldia').value;
+    
     
     const partes = minhours.split(':');
     const horas1 = parseInt(partes[0], 10); 
@@ -46,25 +45,32 @@ calcminutos.forEach(element => {
         series.forEach(elemento => {
             if (elemento[0] == selectSerie.value) {
 
+                var capsmax = elemento[2];
+                var capsmaxminutos = elemento[4];
+   
+                mincaps.setAttribute('max',capsmax-1);
+
+                var capsminimocalculo = 0;
+                
+                if (mincaps.value!= 0){
+                    capsminimocalculo = parseInt(mincaps.value)*elemento[3];
+                }
                 fondo(elemento[8]);
 
                 let timeTotal = elemento[4]
                 if (!check.checked) {
-                    timeTotal = elemento[4] - ((elemento[2] - mincaps)* elemento[7])
+                    //timeTotal = elemento[4] - ((elemento[2]-capsminimocalculo) * elemento[7])
+                    timeTotal = ((capsmaxminutos - capsminimocalculo) * (elemento[7]));
+                    console.log('Timetotal: '+timeTotal);
+                    console.log('CapsMax: '+capsmaxminutos);
+                    console.log('Capsminimocalculo: '+capsminimocalculo);
                 }else{
-                    timeTotal = elemento[4]
+                    timeTotal = (capsmaxminutos - capsminimocalculo);
+                    console.log('Timetotal: '+timeTotal);
+                    console.log('CapsMax: '+capsmaxminutos);
+                    console.log('Capsminimocalculo: '+capsminimocalculo);
                 }
 
-                /*if (mins > 59 || hors > 23 || mins < 0 || hors < 0) {
-                    if (mins > 59) { mins = 59; document.getElementById('minuto').value = mins;}
-            
-                    if (hors > 23) { hors = 23;  document.getElementById('hora').value = hors;}
-               
-                    if (mins < 0) { mins = 0; document.getElementById('minuto').value = mins;}
-
-                    if (hors < 0) { hors = 0;  document.getElementById('hora').value = hors;}
-                
-                }*/
                 var minhors = minutos1 + (horas1 * 60);
 
                 tiempo = calcuhoras(timeTotal, minhors);
@@ -75,7 +81,7 @@ calcminutos.forEach(element => {
                 <hr>
                 <h1><b>` + elemento[1] + `</b></h1>
                 <hr style='height:4px;'>
-                <h2><b>Capítulos: </b>` + elemento[2] + `</h2>
+                <h2><b>Capítulos: </b>` + (elemento[2]-mincaps.value)+ `</h2>
                 <h2><b>Duración por capítulo:</b> ` + elemento[3] + ` min</h2>
                 <h2><b>Años en emisión: </b>` + elemento[5] + `</h2>
                 <h2 ><b>Estado:</b> ` + elemento[6] + ` (`+elemento[9]+`-`+elemento[10]+`)</h2>
@@ -233,10 +239,12 @@ anoFinalizadoInput.addEventListener('change' ,function(){
     if (botonaplicar) {
        series.push([(series.length)+1, nombre, episodiosserie, tiempocap,tiemposerie,anoemision, flexRadioDefault, inoutrominutos, rutaserie,anoserie,anofinalizado]);
         
-    }
-const selectElement = document.getElementById('serie');
+       const selectElement = document.getElementById('serie');
     
-const newOption = document.createElement('option');
-newOption.value = series.length; 
-newOption.textContent = nombre; 
-selectElement.appendChild(newOption);
+        const newOption = document.createElement('option');
+        newOption.value = series.length; 
+        newOption.textContent = nombre; 
+        selectElement.appendChild(newOption);
+    }
+
+   

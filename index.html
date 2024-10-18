@@ -8,20 +8,20 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-    <h1 id="seriestime">SeriesTime</h1>
+    <h2 id="seriestime">SeriesTime</h2>
 
     <div class="formularios">
         <div class="form-container">
-            <h1>¿Cuánto tiempo tienes al día?</h1>
+            <h2>¿Cuánto tiempo tienes al día?</h2>
                 <div class="form-group formutiempo">
                     <input type="time" id="horaminutosaldia" class="calculominutos" min="00:00" max="23:59" value="00:00">
                 </div>
-            <h1>¿Desde que episodio?</h1>
+            <h2>¿Desde que episodio?</h2>
             <div class="formutiempo">
-                <input type="number" id="episodioempezar" class="calculominutos" maxlength="4" oninput="this.value = this.value.slice(0, 4)">
+                <input type="number" id="episodioempezar" class="calculominutos" maxlength="4" oninput="this.value = this.value.slice(0, 4)" min="0">
             </div>
                 <hr>
-            <h1>Añade una serie</h1>
+            <h2>Añade una serie</h2>
         <form >
             <div class="form-group">
                 <label for="nombreserie">NOMBRE:</label>
@@ -67,7 +67,7 @@
         </div>
 
         <div class="form-container">
-            <h1>Selecciona una serie</h1>
+            <h2>Selecciona una serie</h2>
             <form>
                 <div class="form-group">
                     <label for="serie">SERIE:</label>
@@ -78,6 +78,7 @@
                         <option value="3">LOS SIMPSONS</option>
                     </select>
                 </div>
+                <p id="mediap">*ES UNA MEDIA, PUEDE QUE LOS NÚMEROS QUE APARECEN NO SEAN 100% EXACTAS*</p>
             </form>
             <p id="caps"></p>
 
@@ -86,7 +87,7 @@
         </div>
 
         <div class="form-container">
-            <h1>Tardarías en verte la serie</h1>
+            <h2>Tardarías en verte la serie</h2>
             <form>
                 <div class="form-group">
                     <label for="anos">Años:</label>
@@ -116,6 +117,7 @@
             </form>
         </div>
     </div>
+
     
     <script src="index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
